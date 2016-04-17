@@ -1,0 +1,6 @@
+var app = angular.module('courseMnmt');
+app.controller('userController', function ($scope) {
+	'use strict';
+	$scope.users = [{"username":"Chau Vo","email":"chau.vo@gmail.com","gender":"Female","birthday":"1993-03-26T17:00:00.000Z","tel":"0123888999","address":"Phu Nhuan District"},{"username":"Hung Tang","email":"hung.tang@gmail.com","gender":"Male","birthday":"2015-09-08T17:00:00.000Z","tel":"0123999666","address":"Tan Binh District"},{"username":"Minh Ha","email":"minh.ha@gmail.com","gender":"Male","birthday":"1992-12-31T17:00:00.000Z","tel":"0123888999","address":"Binh Thanh District"},{"username":"Minh Vu","email":"minh.vu@gmail.com","gender":"Male","birthday":"2015-09-08T17:00:00.000Z","tel":"0123999666","address":"Go Vap District"},{"username":"Thang Pham","email":"thang.pham@gmail.com","gender":"Male","birthday":"1993-10-10T17:00:00.000Z","tel":"0123888999","address":"District 10"},{"username":"Trung Dao","email":"trung.dao@gmail.com","gender":"Male","birthday":"1993-06-11T17:00:00.000Z","tel":"0123888999","address":"District 12"},{"username":"Tuyen Ho","email":"tuyen.ho@gmail.com","gender":"Male","birthday":"1993-02-22T17:00:00.000Z","tel":"0123888999","address":"Binh Thanh District"}];
+
+});

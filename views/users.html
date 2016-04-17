@@ -1,0 +1,24 @@
+<div class="container" ng-controller="userController">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Username</td>
+				<td>Email</td>
+				<td>Gender</td>
+				<td>Birthdate</td>
+				<td>Tel</td>
+				<td>Address</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="user in users">
+				<td ng-bind="user.username"></td>
+				<td ng-bind="user.email"></td>
+				<td ng-bind="user.gender"></td>
+				<td ng-bind="user.birthday"></td>
+				<td ng-bind="user.tel"></td>
+				<td ng-bind="user.address"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
