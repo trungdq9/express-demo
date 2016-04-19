@@ -1,26 +1,47 @@
 var express = require('express');
+var Sequelize = require('sequelize');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mysql = require('mysql');
+//var mysql = require('mysql');
 var http = require('http');
-var pool  = mysql.createPool({
+var models = require(path.join(__dirname, '/models'));
+var config = require(path.join(__dirname, '/configs/config.json'));
+// console.log(config.dev.database);
+// console.log(config.dev.username);
+// console.log(config.dev.password);
+// console.log(config.dev.host);
+// console.log(config.dev.port);
+// console.log(config.dev.dialect);
+// var sequelize = new Sequelize(config.dev.database, config.dev.username, config.dev.password, {
+//         host: config.dev.host,
+//         port: config.dev.port,
+//         logging: false,
+//         dialect: config.dev.dialect,
+//         pool: {
+//             max: 5,
+//             min: 0,
+//             idle: 10000
+//         }
+//     });
+//var sequelize = new Sequelize('mysql://localhost:3306/nodejsdemo');
+/*var pool  = mysql.createPool({
 	host : 'localhost',
 	user : 'root',
 	password : '123456',
 	connectionLimit: '5',
 	database : 'nodejsdemo'
-});
+});*/
 //var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'html');
-app.set('pool', pool);
+app.set('view engine', 'jade');
+//app.set('pool', pool);
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -50,10 +71,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+        res.json(err.message);
     });
 }
 
@@ -61,10 +79,11 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+    res.json(err.message);
 });
 module.exports = app;
-var server = app.listen(3000);
+//var server = app.listen(3000);
+
+models.sequelize.sync().then(function () {
+  var server = app.listen(3000);
+});
